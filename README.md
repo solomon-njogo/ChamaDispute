@@ -58,10 +58,10 @@ Interaction is designed to be mobile-first and intuitive for group members:
 
 ## 📸 Screenshots
 
-![Chama Hub Dashboard](https://raw.githubusercontent.com/user-attachments/assets/placeholder-hash-1)
+![Chama Hub Dashboard](./Screenshots/dash.png)
 *The Chama Hub showing real-time stats and the Action Queue for pending disputes.*
 
-![AI Arbitration Chat](https://raw.githubusercontent.com/user-attachments/assets/placeholder-hash-2)
+![AI Arbitration Chat](./Screenshots/arbi.png)
 *Msuluhishi providing a multilingual advisory ruling based on Article 7.4 of the group bylaws.*
 
 ---
