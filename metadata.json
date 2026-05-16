@@ -1,6 +1,6 @@
 {
-  "name": "ChamaDisputes",
-  "description": "AI arbitration agent for Kenyan investment groups (chamas). Resolves disputes over contributions, loans, and voting using English, Kiswahili, and Sheng.",
+  "name": "Remix: Msuluhishi - Umoja Chama AI Arbitrator",
+  "description": "An AI arbitration assistant for Umoja Chama to resolve member disputes based on bylaws and records.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
