@@ -30,27 +30,53 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Initialize Gemini
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  httpOptions: {
-    headers: {
-      'User-Agent': 'aistudio-build',
+// Initialize Gemini lazily
+let aiClient: GoogleGenAI | null = null;
+function getAiClient(): GoogleGenAI {
+  if (!aiClient) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY environment variable is required");
     }
+    aiClient = new GoogleGenAI({
+      apiKey,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        }
+      }
+    });
   }
-});
+  return aiClient;
+}
+
+// Cache for Chama data to avoid reading files on every request
+let chamaDataCache: string | null = null;
+let lastCacheUpdate = 0;
+const CACHE_TTL = 30000; // 30 seconds
 
 async function getChamaData() {
+  const now = Date.now();
+  if (chamaDataCache && (now - lastCacheUpdate < CACHE_TTL)) {
+    return chamaDataCache;
+  }
+
   const dataDir = path.join(process.cwd(), "data");
   let context = "THE FOLLOWING ARE THE RECORDS OF UMOJA CHAMA:\n\n";
 
   try {
     const files = await fs.readdir(dataDir);
-    for (const file of files) {
-      if (file.startsWith('.')) continue;
-      const content = await fs.readFile(path.join(dataDir, file), "utf-8");
-      context += `--- FILE: ${file} ---\n${content}\n\n`;
-    }
+    files.sort();
+    const relevantFiles = files.filter(f => !f.startsWith('.') && (f.endsWith('.csv') || f.endsWith('.md')));
+    
+    const contents = await Promise.all(relevantFiles.map(async f => {
+      const c = await fs.readFile(path.join(dataDir, f), "utf-8");
+      return `--- FILE: ${f} ---\n${c}\n\n`;
+    }));
+    
+    context += contents.join("");
+    chamaDataCache = context;
+    lastCacheUpdate = now;
   } catch (err) {
     console.error("Error reading data directory:", err);
   }
@@ -75,7 +101,10 @@ HOW TO STRUCTURE THE VERDICT:
 
 CRITICAL: 
 - If records conflict with a member's claim, prioritize the records but mention the discrepancy.
-- Use Kiswahili/Sheng only if the user does. Default to professional English for the Treasurer.
+  - If the user writes in English, reply in English.
+  - If the user writes in Kiswahili, jibu kwa Kiswahili.
+  - If the user writes in Sheng, reply in the same Sheng mix.
+  - Never switch language unless the user does first. Default to professional English for the Treasurer report sections.
 `;
 
 app.get("/api/stats", async (req, res) => {
@@ -186,14 +215,17 @@ app.get("/api/disputes", async (req, res) => {
   }
 });
 
-async function generateWithRetry(params: any, retries = 3, delay = 2000) {
+async function generateWithRetry(params: any, retries = 3, delay = 1000) {
+  const ai = getAiClient();
   for (let i = 0; i < retries; i++) {
     try {
       return await ai.models.generateContent(params);
     } catch (error: any) {
-      const isUnavailable = error?.message?.includes("503") || error?.status === 503 || (error?.error?.code === 503);
+      const errorMsg = error?.message || "";
+      const isUnavailable = errorMsg.includes("503") || error?.status === 503 || errorMsg.includes("UNAVAILABLE") || errorMsg.includes("high demand");
+      
       if (isUnavailable && i < retries - 1) {
-        console.log(`Gemini busy (503), retrying in ${delay}ms... (Attempt ${i + 1}/${retries})`);
+        console.log(`Gemini busy (503/UNAVAILABLE), retrying in ${delay}ms... (Attempt ${i + 1}/${retries})`);
         await new Promise(resolve => setTimeout(resolve, delay));
         delay *= 2;
         continue;
@@ -204,8 +236,29 @@ async function generateWithRetry(params: any, retries = 3, delay = 2000) {
   throw new Error("Failed after multiple retries");
 }
 
+async function generateStreamWithRetry(params: any, retries = 3, delay = 1000) {
+  const ai = getAiClient();
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await ai.models.generateContentStream(params);
+    } catch (error: any) {
+      const errorMsg = error?.message || "";
+      const isUnavailable = errorMsg.includes("503") || error?.status === 503 || errorMsg.includes("UNAVAILABLE") || errorMsg.includes("high demand");
+      
+      if (isUnavailable && i < retries - 1) {
+        console.log(`Gemini stream busy (503/UNAVAILABLE), retrying in ${delay}ms... (Attempt ${i + 1}/${retries})`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        delay *= 2;
+        continue;
+      }
+      throw error;
+    }
+  }
+  throw new Error("Failed after multiple retries stream");
+}
+
 app.post("/api/resolve", async (req, res) => {
-  const { dispute } = req.body;
+  const { dispute, stream = false } = req.body;
 
   if (!dispute) {
     return res.status(400).json({ error: "Dispute message is required" });
@@ -214,6 +267,27 @@ app.post("/api/resolve", async (req, res) => {
   try {
     const chamaData = await getChamaData();
     const fullPrompt = `${SYSTEM_PROMPT}\n\n${chamaData}\n\nUSER DISPUTE: ${dispute}\n\nADVISORY RULING:`;
+
+    if (stream) {
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+
+      const responseStream = await generateStreamWithRetry({
+        model: "gemini-3-flash-preview",
+        contents: fullPrompt,
+      });
+
+      if (!responseStream) throw new Error("Could not initialize stream");
+
+      for await (const chunk of responseStream) {
+        if (chunk.text) {
+          res.write(`data: ${JSON.stringify({ text: chunk.text })}\n\n`);
+        }
+      }
+      res.write('data: [DONE]\n\n');
+      return res.end();
+    }
 
     const response = await generateWithRetry({
       model: "gemini-3-flash-preview",
@@ -225,7 +299,12 @@ app.post("/api/resolve", async (req, res) => {
     res.json({ result: response.text });
   } catch (error: any) {
     console.error("Gemini Error:", error);
-    res.status(500).json({ error: error.message || "Failed to resolve dispute" });
+    if (!res.headersSent) {
+      res.status(500).json({ error: error.message || "Failed to resolve dispute" });
+    } else {
+      res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
+      res.end();
+    }
   }
 });
 

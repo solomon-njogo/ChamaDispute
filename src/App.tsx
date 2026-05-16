@@ -31,24 +31,12 @@ interface Message {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"arbitrate" | "records">("arbitrate");
-  const [language, setLanguage] = useState<"en" | "sw">("en");
-
-  const getWelcomeMessage = (lang: "en" | "sw") => lang === "en" 
-    ? "Hello! I am Msuluhishi. I am here to assist the Treasurer and members of Umoja Chama with fair dispute resolutions. How can I help today?"
-    : "Hujambo! Mimi ni Msuluhishi. Niko hapa kusaidia Mwekahazina na wanachama wa Umoja Chama kwa usuluhishi wa haki. Nawezaje kusaidia leo?";
-
   const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", content: getWelcomeMessage("en") }
+    { 
+      role: "bot", 
+      content: "Hujambo! Mimi ni Msuluhishi. I am here to assist the Treasurer of Umoja Chama with dispute resolutions. How can I help today?" 
+    }
   ]);
-
-  useEffect(() => {
-    setMessages(prev => {
-      if (prev.length === 1 && prev[0].role === "bot") {
-        return [{ role: "bot", content: getWelcomeMessage(language) }];
-      }
-      return prev;
-    });
-  }, [language]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState<string[]>([]);
@@ -151,16 +139,53 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/resolve", {
+      const response = await fetch("/api/resolve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ dispute: messageContent }),
+        body: JSON.stringify({ dispute: messageContent, stream: true }),
       });
-      const data = await res.json();
-      if (data.result) {
-        setMessages(prev => [...prev, { role: "bot", content: data.result }]);
-      } else {
-        throw new Error(data.error || "Something went wrong");
+
+      if (!response.ok) throw new Error("Failed to connect to arbitrator");
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      let botMessage = "";
+      let buffer = "";
+      
+      // Add initial empty bot message
+      setMessages(prev => [...prev, { role: "bot", content: "" }]);
+
+      while (true) {
+        const { done, value } = await reader!.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || ""; // Keep the partial line in buffer
+
+        for (const line of lines) {
+          const trimmedLine = line.trim();
+          if (!trimmedLine || !trimmedLine.startsWith("data: ")) continue;
+          
+          const dataStr = trimmedLine.slice(6);
+          if (dataStr === "[DONE]") continue;
+
+          try {
+            const data = JSON.parse(dataStr);
+            if (data.text) {
+              botMessage += data.text;
+              setMessages(prev => {
+                const newMessages = [...prev];
+                newMessages[newMessages.length - 1].content = botMessage;
+                return newMessages;
+              });
+            } else if (data.error) {
+              throw new Error(data.error);
+            }
+          } catch (e) {
+            console.error("Error parsing stream chunk", e, dataStr);
+          }
+        }
       }
     } catch (err: any) {
       setMessages(prev => [...prev, { role: "bot", content: "Samahani, technical error occurred: " + err.message }]);
@@ -189,27 +214,21 @@ export default function App() {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all ${activeTab === 'arbitrate' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'hover:bg-white/5 text-slate-400'}`}
           >
             <MessageSquare size={18} />
-            <span className="font-medium">{language === 'en' ? 'Arbitration' : 'Usuluhishi'}</span>
+            <span className="font-medium">Arbitration</span>
           </button>
           <button 
             onClick={() => setActiveTab("records")}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all ${activeTab === 'records' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'hover:bg-white/5 text-slate-400'}`}
           >
             <BookOpen size={18} />
-            <span className="font-medium">{language === 'en' ? 'Records' : 'Kumbukumbu'}</span>
+            <span className="font-medium">Chama Records</span>
           </button>
         </nav>
 
-        <div className="mt-auto pt-6 border-t border-slate-800 space-y-4">
-          <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800">
-             <button onClick={() => setLanguage('en')} className={`flex-1 text-xs py-1.5 rounded-md transition-colors font-medium ${language === 'en' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}>English</button>
-             <button onClick={() => setLanguage('sw')} className={`flex-1 text-xs py-1.5 rounded-md transition-colors font-medium ${language === 'sw' ? 'bg-slate-800 text-white shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}>Kiswahili</button>
-          </div>
-          <div>
-            <p className="text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-2">Chama Registration</p>
-            <div className="bg-slate-950 px-3 py-2 rounded-lg border border-slate-800">
-              <p className="text-[10px] text-emerald-500 font-mono">CHAMA/NRB/2021/0847</p>
-            </div>
+        <div className="mt-auto pt-6 border-t border-slate-800">
+          <p className="text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-2">Chama Registration</p>
+          <div className="bg-slate-950 px-3 py-2 rounded-lg border border-slate-800">
+            <p className="text-[10px] text-emerald-500 font-mono">CHAMA/NRB/2021/0847</p>
           </div>
         </div>
       </aside>
@@ -222,7 +241,7 @@ export default function App() {
             <header className="bg-slate-900/50 backdrop-blur-md px-8 py-5 border-b border-slate-800 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                  {language === 'en' ? 'Dispute Resolver' : 'Msuluhishi'}
+                  Dispute Resolver
                   <span className="text-[9px] px-2 py-0.5 rounded bg-emerald-900/30 text-emerald-400 border border-emerald-800/50 font-bold uppercase tracking-wider">Session Active</span>
                 </h2>
                 <p className="text-xs text-slate-500 font-medium">Umoja Chama Advisory • Article 9.3</p>
@@ -315,7 +334,7 @@ export default function App() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={language === 'en' ? "Describe a dispute (e.g., 'Member 009 missed repayment')" : "Eleza mzozo (mfano, 'Nililipa late kidogo, nita-refund-iwa?')"}
+                  placeholder="Describe a dispute (e.g., Member UMOJA009 late fee...)"
                   className="flex-1 bg-slate-900 border border-slate-800 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 text-white placeholder-slate-500 transition-all shadow-inner"
                 />
                 <button 
