@@ -1,0 +1,98 @@
+Receipt No,Date,Time,Transaction Type,Account,Details,Paid In (KES),Withdrawn (KES),Balance (KES)
+RKT84920311,2024-01-05,08:14:32,Pay Bill,UMOJA001,Kamau Wanjiku - Jan contribution,5000.00,,842500.00
+RKT84920445,2024-01-05,09:02:17,Pay Bill,UMOJA002,Otieno Omondi - Jan contribution,5000.00,,847500.00
+RKT84921102,2024-01-05,10:45:55,Pay Bill,UMOJA003,Achieng Adhiambo - Jan contribution,5000.00,,852500.00
+RKT84923311,2024-01-05,11:30:00,Pay Bill,UMOJA004,Muthoni Ngugi - Jan contribution,5000.00,,857500.00
+RKT84925678,2024-01-05,13:22:10,Pay Bill,UMOJA005,Kipchoge Rono - Jan contribution,5000.00,,862500.00
+RKT84927890,2024-01-05,14:05:33,Pay Bill,UMOJA006,Njeri Wairimu - Jan contribution,5000.00,,867500.00
+RKT84929001,2024-01-05,15:18:44,Pay Bill,UMOJA007,Hassan Omar - Jan contribution,5000.00,,872500.00
+RKT84930222,2024-01-05,16:00:01,Pay Bill,UMOJA008,Chebet Sang - Jan contribution,5000.00,,877500.00
+RKT84932544,2024-01-06,08:55:20,Pay Bill,UMOJA009,Mwangi Kariuki - Jan contribution (LATE),5200.00,,882700.00
+RKT84933100,2024-01-06,09:10:45,Pay Bill,UMOJA010,Fatuma Ali - Jan contribution (LATE),5200.00,,887900.00
+RKT84935678,2024-01-07,10:30:00,Pay Bill,UMOJA011,Kamande Gitau - Jan contribution,5000.00,,892900.00
+RKT84937890,2024-01-08,11:00:15,Pay Bill,UMOJA012,Awino Aoko - Jan contribution,5000.00,,897900.00
+RKT84940001,2024-01-10,14:22:30,Pay Bill,UMOJA013,Rotich Kiplangat - Jan contribution,5000.00,,902900.00
+RKT84942345,2024-01-12,09:45:00,Pay Bill,UMOJA014,Nzomo Musyoka - Jan contribution,5000.00,,907900.00
+RKT84944567,2024-01-14,16:30:00,Pay Bill,UMOJA015,Wambua Kioko - Jan contribution,5000.00,,912900.00
+RKT84946789,2024-01-05,08:00:00,Pay Bill,UMOJA016,Gathoni Kimani - Jan contribution,5000.00,,917900.00
+RKT84948901,2024-01-05,08:30:00,Pay Bill,UMOJA017,Ombogo Nyamweya - Jan contribution,5000.00,,922900.00
+RKT84951123,2024-01-05,09:55:00,Pay Bill,UMOJA018,Adhiambo Owino - Jan contribution,5000.00,,927900.00
+RKT84960000,2024-01-16,10:00:00,Withdrawal,UMOJA-MAIN,Merry-go-round payout to Kamau Wanjiku (member 001),,95000.00,832900.00
+RKT84960001,2024-01-31,17:00:00,Pay Bill,UMOJA-WELFARE,Welfare disbursement - Otieno funeral (spouse),10000.00,,842900.00
+RKT85020311,2024-02-05,07:58:10,Pay Bill,UMOJA001,Kamau Wanjiku - Feb contribution,5000.00,,847900.00
+RKT85020445,2024-02-05,08:34:22,Pay Bill,UMOJA002,Otieno Omondi - Feb contribution,5000.00,,852900.00
+RKT85021102,2024-02-05,09:12:05,Pay Bill,UMOJA003,Achieng Adhiambo - Feb contribution,5000.00,,857900.00
+RKT85023311,2024-02-05,10:00:00,Pay Bill,UMOJA004,Muthoni Ngugi - Feb contribution,5000.00,,862900.00
+RKT85025678,2024-02-05,11:45:33,Pay Bill,UMOJA005,Kipchoge Rono - Feb contribution,5000.00,,867900.00
+RKT85027890,2024-02-05,12:10:00,Pay Bill,UMOJA006,Njeri Wairimu - Feb contribution,5000.00,,872900.00
+RKT85029001,2024-02-05,13:05:00,Pay Bill,UMOJA007,Hassan Omar - Feb contribution,5000.00,,877900.00
+RKT85030222,2024-02-05,14:00:00,Pay Bill,UMOJA008,Chebet Sang - Feb contribution,5000.00,,882900.00
+RKT85032544,2024-02-05,15:30:00,Pay Bill,UMOJA009,Mwangi Kariuki - Feb contribution,5000.00,,887900.00
+RKT85033100,2024-02-05,16:00:00,Pay Bill,UMOJA010,Fatuma Ali - Feb contribution,5000.00,,892900.00
+RKT85035678,2024-02-05,16:45:00,Pay Bill,UMOJA011,Kamande Gitau - Feb contribution,5000.00,,897900.00
+RKT85037890,2024-02-07,09:20:00,Pay Bill,UMOJA012,Awino Aoko - Feb contribution (LATE),5200.00,,903100.00
+RKT85040001,2024-02-05,08:00:00,Pay Bill,UMOJA013,Rotich Kiplangat - Feb contribution,5000.00,,908100.00
+RKT85042345,2024-02-05,09:00:00,Pay Bill,UMOJA014,Nzomo Musyoka - Feb contribution,5000.00,,913100.00
+RKT85044567,2024-02-05,10:30:00,Pay Bill,UMOJA015,Wambua Kioko - Feb contribution,5000.00,,918100.00
+RKT85046789,2024-02-05,11:00:00,Pay Bill,UMOJA016,Gathoni Kimani - Feb contribution,5000.00,,923100.00
+RKT85048901,2024-02-05,12:00:00,Pay Bill,UMOJA017,Ombogo Nyamweya - Feb contribution,5000.00,,928100.00
+RKT85051123,2024-02-05,13:30:00,Pay Bill,UMOJA018,Adhiambo Owino - Feb contribution,5000.00,,933100.00
+RKT85060000,2024-02-15,10:00:00,Withdrawal,UMOJA-MAIN,Merry-go-round payout to Otieno Omondi (member 002),,95000.00,838100.00
+RKT85100001,2024-02-20,11:00:00,Pay Bill,UMOJA-LOAN,Loan disbursement to Mwangi Kariuki,,30000.00,808100.00
+RKT86020311,2024-03-05,08:05:00,Pay Bill,UMOJA001,Kamau Wanjiku - Mar contribution,5000.00,,813100.00
+RKT86020445,2024-03-05,08:40:00,Pay Bill,UMOJA002,Otieno Omondi - Mar contribution,5000.00,,818100.00
+RKT86021102,2024-03-05,09:15:00,Pay Bill,UMOJA003,Achieng Adhiambo - Mar contribution,5000.00,,823100.00
+RKT86023311,2024-03-05,10:05:00,Pay Bill,UMOJA004,Muthoni Ngugi - Mar contribution,5000.00,,828100.00
+RKT86025678,2024-03-05,11:00:00,Pay Bill,UMOJA005,Kipchoge Rono - Mar contribution,5000.00,,833100.00
+RKT86027890,2024-03-05,12:30:00,Pay Bill,UMOJA006,Njeri Wairimu - Mar contribution,5000.00,,838100.00
+RKT86029001,2024-03-05,13:00:00,Pay Bill,UMOJA007,Hassan Omar - Mar contribution,5000.00,,843100.00
+RKT86030222,2024-03-05,14:30:00,Pay Bill,UMOJA008,Chebet Sang - Mar contribution,5000.00,,848100.00
+RKT86032544,2024-03-05,15:00:00,Pay Bill,UMOJA009,Mwangi Kariuki - Mar contribution + loan repayment,6500.00,,854600.00
+RKT86033100,2024-03-05,15:45:00,Pay Bill,UMOJA010,Fatuma Ali - Mar contribution,5000.00,,859600.00
+RKT86035678,2024-03-05,16:30:00,Pay Bill,UMOJA011,Kamande Gitau - Mar contribution,5000.00,,864600.00
+RKT86037890,2024-03-05,17:00:00,Pay Bill,UMOJA012,Awino Aoko - Mar contribution,5000.00,,869600.00
+RKT86040001,2024-03-05,08:00:00,Pay Bill,UMOJA013,Rotich Kiplangat - Mar contribution,5000.00,,874600.00
+RKT86042345,2024-03-07,09:30:00,Pay Bill,UMOJA014,Nzomo Musyoka - Mar contribution (LATE),5200.00,,879800.00
+RKT86044567,2024-03-05,10:00:00,Pay Bill,UMOJA015,Wambua Kioko - Mar contribution,5000.00,,884800.00
+RKT86046789,2024-03-05,11:30:00,Pay Bill,UMOJA016,Gathoni Kimani - Mar contribution,5000.00,,889800.00
+RKT86048901,2024-03-05,12:45:00,Pay Bill,UMOJA017,Ombogo Nyamweya - Mar contribution,5000.00,,894800.00
+RKT86051123,2024-03-05,13:15:00,Pay Bill,UMOJA018,Adhiambo Owino - Mar contribution,5000.00,,899800.00
+RKT86060000,2024-03-15,10:00:00,Withdrawal,UMOJA-MAIN,Merry-go-round payout to Achieng Adhiambo (member 003),,95000.00,804800.00
+RKT87020311,2024-04-05,08:00:00,Pay Bill,UMOJA001,Kamau Wanjiku - Apr contribution,5000.00,,809800.00
+RKT87020445,2024-04-05,08:45:00,Pay Bill,UMOJA002,Otieno Omondi - Apr contribution,5000.00,,814800.00
+RKT87021102,2024-04-05,09:20:00,Pay Bill,UMOJA003,Achieng Adhiambo - Apr contribution,5000.00,,819800.00
+RKT87023311,2024-04-05,10:10:00,Pay Bill,UMOJA004,Muthoni Ngugi - Apr contribution,5000.00,,824800.00
+RKT87025678,2024-04-05,11:05:00,Pay Bill,UMOJA005,Kipchoge Rono - Apr contribution,5000.00,,829800.00
+RKT87027890,2024-04-05,12:35:00,Pay Bill,UMOJA006,Njeri Wairimu - Apr contribution,5000.00,,834800.00
+RKT87029001,2024-04-05,13:05:00,Pay Bill,UMOJA007,Hassan Omar - Apr contribution,5000.00,,839800.00
+RKT87030222,2024-04-05,14:35:00,Pay Bill,UMOJA008,Chebet Sang - Apr contribution,5000.00,,844800.00
+RKT87032544,2024-04-05,15:05:00,Pay Bill,UMOJA009,Mwangi Kariuki - Apr contribution + loan repayment,6500.00,,851300.00
+RKT87033100,2024-04-05,15:50:00,Pay Bill,UMOJA010,Fatuma Ali - Apr contribution,5000.00,,856300.00
+RKT87035678,2024-04-05,16:35:00,Pay Bill,UMOJA011,Kamande Gitau - Apr contribution,5000.00,,861300.00
+RKT87037890,2024-04-05,17:05:00,Pay Bill,UMOJA012,Awino Aoko - Apr contribution,5000.00,,866300.00
+RKT87040001,2024-04-05,08:05:00,Pay Bill,UMOJA013,Rotich Kiplangat - Apr contribution,5000.00,,871300.00
+RKT87042345,2024-04-05,09:10:00,Pay Bill,UMOJA014,Nzomo Musyoka - Apr contribution,5000.00,,876300.00
+RKT87044567,2024-04-05,10:05:00,Pay Bill,UMOJA015,Wambua Kioko - Apr contribution,5000.00,,881300.00
+RKT87046789,2024-04-05,11:35:00,Pay Bill,UMOJA016,Gathoni Kimani - Apr contribution,5000.00,,886300.00
+RKT87048901,2024-04-22,08:00:00,Pay Bill,UMOJA017,Ombogo Nyamweya - Apr contribution (LATE - penalty KES 500),5500.00,,891800.00
+RKT87051123,2024-04-05,13:20:00,Pay Bill,UMOJA018,Adhiambo Owino - Apr contribution,5000.00,,896800.00
+RKT87060000,2024-04-15,10:00:00,Withdrawal,UMOJA-MAIN,Merry-go-round payout to Muthoni Ngugi (member 004),,95000.00,801800.00
+RKT88020311,2024-05-05,08:02:00,Pay Bill,UMOJA001,Kamau Wanjiku - May contribution,5000.00,,806800.00
+RKT88020445,2024-05-05,08:47:00,Pay Bill,UMOJA002,Otieno Omondi - May contribution,5000.00,,811800.00
+RKT88021102,2024-05-05,09:22:00,Pay Bill,UMOJA003,Achieng Adhiambo - May contribution,5000.00,,816800.00
+RKT88023311,2024-05-05,10:12:00,Pay Bill,UMOJA004,Muthoni Ngugi - May contribution,5000.00,,821800.00
+RKT88025678,2024-05-05,11:07:00,Pay Bill,UMOJA005,Kipchoge Rono - May contribution,5000.00,,826800.00
+RKT88027890,2024-05-05,12:37:00,Pay Bill,UMOJA006,Njeri Wairimu - May contribution,5000.00,,831800.00
+RKT88029001,2024-05-05,13:07:00,Pay Bill,UMOJA007,Hassan Omar - May contribution,5000.00,,836800.00
+RKT88030222,2024-05-05,14:37:00,Pay Bill,UMOJA008,Chebet Sang - May contribution,5000.00,,841800.00
+RKT88032544,2024-05-05,15:07:00,Pay Bill,UMOJA009,Mwangi Kariuki - May contribution + loan repayment,6500.00,,848300.00
+RKT88033100,2024-05-05,15:52:00,Pay Bill,UMOJA010,Fatuma Ali - May contribution,5000.00,,853300.00
+RKT88035678,2024-05-05,16:37:00,Pay Bill,UMOJA011,Kamande Gitau - May contribution,5000.00,,858300.00
+RKT88037890,2024-05-05,17:07:00,Pay Bill,UMOJA012,Awino Aoko - May contribution,5000.00,,863300.00
+RKT88040001,2024-05-05,08:07:00,Pay Bill,UMOJA013,Rotich Kiplangat - May contribution,5000.00,,868300.00
+RKT88042345,2024-05-05,09:12:00,Pay Bill,UMOJA014,Nzomo Musyoka - May contribution,5000.00,,873300.00
+RKT88044567,2024-05-05,10:07:00,Pay Bill,UMOJA015,Wambua Kioko - May contribution,5000.00,,878300.00
+RKT88046789,2024-05-05,11:37:00,Pay Bill,UMOJA016,Gathoni Kimani - May contribution,5000.00,,883300.00
+RKT88048901,2024-05-05,12:47:00,Pay Bill,UMOJA017,Ombogo Nyamweya - May contribution,5000.00,,888300.00
+RKT88051123,2024-05-05,13:22:00,Pay Bill,UMOJA018,Adhiambo Owino - May contribution,5000.00,,893300.00
+RKT88060000,2024-05-15,10:00:00,Withdrawal,UMOJA-MAIN,Merry-go-round payout to Kipchoge Rono (member 005),,95000.00,798300.00

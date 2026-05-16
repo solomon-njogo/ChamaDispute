@@ -1,0 +1,19 @@
+month,slot_number,member_id,member_name,expected_payout_kes,actual_payout_kes,payout_date,mpesa_receipt,payout_status,notes
+January,1,UMOJA001,Kamau Wanjiku,95000,95000,2024-01-16,RKT84960000,PAID,"First payout of 2024. All 18 members contributed (+ late fees). Payout = 18 × 5000 = 90000 principal + late fees KES 400 − chama expenses KES 0 = KES 90400. Rounded to 95000 inclusive of welfare collection and carried forward balance. Reconcile with Treasurer records."
+February,2,UMOJA002,Otieno Omondi,95000,95000,2024-02-15,RKT85060000,PAID,"Standard payout. No issues."
+March,3,UMOJA003,Achieng Adhiambo,95000,95000,2024-03-15,RKT86060000,PAID,"Standard payout. No issues."
+April,4,UMOJA004,Muthoni Ngugi,95000,95000,2024-04-15,RKT87060000,PAID,"Muthoni received after swap with Chebet (Aug). Swap documented (DIS-2024-005). Written approval from Chairperson issued retroactively."
+May,5,UMOJA005,Kipchoge Rono,95000,95000,2024-05-15,RKT88060000,PAID,"Standard payout. No issues."
+June,6,UMOJA006,Njeri Wairimu,95000,,,UPCOMING,"Note: Njeri has active loan LN-2024-002. Per Article 6.4, outstanding balance (KES 22000) < 50% of payout (KES 47500) — no offset required. Full payout to be made."
+July,7,UMOJA007,Hassan Omar,95000,,,UPCOMING,
+August,8,UMOJA008,Chebet Sang,95000,,,UPCOMING,"Swapped with Muthoni (slot 4). Now receiving August instead of April."
+September,9,UMOJA009,Mwangi Kariuki,95000,,,UPCOMING,"Note: Mwangi has active loan LN-2024-001. Expected balance at Sep: ~KES 4500 (< 50% of payout). Treasurer to confirm offset amount before payout."
+October,10,UMOJA010,Fatuma Ali,95000,,,UPCOMING,
+November,11,UMOJA011,Kamande Gitau,95000,,,UPCOMING,
+December,12,UMOJA012,Awino Aoko,95000,,,UPCOMING,
+Investment-Dividend,13,UMOJA013,Rotich Kiplangat,,,,,INVESTMENT SLOT,"Slot 13–18 members receive share of T-Bill return (approx KES 32000 / 6 = ~KES 5333 each) at maturity Apr 2025."
+Investment-Dividend,14,UMOJA014,Nzomo Musyoka,,,,,INVESTMENT SLOT,
+Investment-Dividend,15,UMOJA015,Wambua Kioko,,,,,INVESTMENT SLOT,
+Investment-Dividend,16,UMOJA016,Gathoni Kimani,,,,,INVESTMENT SLOT,
+Investment-Dividend,17,UMOJA017,Ombogo Nyamweya,,,,,INVESTMENT SLOT,
+Investment-Dividend,18,UMOJA018,Adhiambo Owino,,,,,INVESTMENT SLOT,
