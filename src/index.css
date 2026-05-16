@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-chama-primary: #1b4332; /* Deep Safari Green */
+  --color-chama-secondary: #d4a373; /* Savannah Gold */
+  --color-chama-accent: #f4a261; /* Kenyan Sunset Orange */
+  --color-chama-bg: #f8f9fa;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-chama-bg text-gray-900;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.sheng-badge {
+  @apply bg-chama-accent/10 text-chama-accent px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider;
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "ChamaDisputes",
+  "description": "AI arbitration agent for Kenyan investment groups (chamas). Resolves disputes over contributions, loans, and voting using English, Kiswahili, and Sheng.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
